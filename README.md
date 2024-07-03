@@ -2,7 +2,7 @@ HumanGEMlib is a Python library to perform genome-scale analysis on HumanGEM. Te
 
 PyPI package contains HumanGEM XML file but GitHub repository does not. It can be downloaded [here](https://github.com/SysBioChalmers/Human-GEM/blob/main/model/Human-GEM.xml).
 
-See usage.ipynb for usage.
+See usage.ipynb for an example on diabetic metabolic dysregulation due to genetic knockouts. 
 
 ```bash
 pip install humangemlib
