@@ -26,12 +26,13 @@ class FBA:
             except ValueError:
                 pass
 
-    def gene_type_separation(self, df='cleaneddata.tsv'):
-        if df == 'cleaneddata.tsv':
+    def gene_type_separation(self, geneList=None):
+        if geneList == None:
             my_resources = importlib_resources.files("humangemlib")
-            df = my_resources.joinpath(df)
-        df=pd.read_csv(df, sep='\t')
-        self.gwas_genes=set(list(df.mappedGenes))
+            df = my_resources.joinpath('cleaneddata.tsv')
+            df=pd.read_csv(df, sep='\t')
+            geneList=list(df.mappedGenes)
+        self.gwas_genes=set(geneList)
         op=[]
         for i in self.gwas_genes:
             if type(i) is str:
@@ -107,6 +108,25 @@ class FBA:
             t.update(k.to_dict())
             flux_diff.append(t)
         return flux_diff
+    
+    def unique_fluxes(self, solutions):
+        unique_fluxes=[{'num':1, 'fluxes':pd.Series(solutions.iloc[0,2:]), 'knockout_genes':['None']}]
+        for i in range(1,len(solutions)-1):
+            unique=True
+            for j in unique_fluxes:
+                if np.allclose(np.array(j['fluxes'].values, dtype=float),np.array(pd.Series(solutions.iloc[i,2:].values), dtype=float)) and solutions.iloc[i,:]['knockout_gene']!='None':
+                    unique=False
+                    j['num']+=1
+                    j['knockout_genes'].append(solutions.iloc[i,:]['knockout_gene'])
+                    break
+            if unique:
+                unique_fluxes.append({'num':1, 'fluxes':pd.Series(solutions.iloc[i,2:]), 'knockout_genes':[solutions.iloc[i,:]['knockout_gene']]})
+        u=[]
+        for i in unique_fluxes:
+            t={'num':i['num'], 'knockout_genes':i['knockout_genes']}
+            t.update(i['fluxes'].to_dict())
+            u.append(t)
+        return u
     
     # can be reworked to use list of series for solutions in means. currently unindexed in reactions and genes. good for specific use case but lazy programming.
     def mean_solutions(self, n=5, knockouts=114, reactions=12997):
