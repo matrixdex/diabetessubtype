@@ -12,6 +12,11 @@ Tested in Jupyter Notebook.
 pip install jupyter
 ```
 
+Startup script:
+Before first run of humangemlib, GTF database needs to be created to convert Ensembl genes to gene IDs
+
+```pyensembl install --release 111 --species homo_sapiens```
+
 PyPI package contains HumanGEM XML file but GitHub repository does not (25 MB upload limit). It can be downloaded [here](https://github.com/SysBioChalmers/Human-GEM/blob/main/model/Human-GEM.xml).
 
 ```usage.ipynb``` is an example on diabetic metabolic dysregulation due to genetic knockouts.
