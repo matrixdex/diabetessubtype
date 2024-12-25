@@ -12,7 +12,6 @@ Tested in Jupyter Notebook.
 pip install jupyter
 ```
 
-Startup script:
 Before first run of humangemlib, GTF database needs to be created to convert Ensembl genes to gene IDs
 
 ```pyensembl install --release 111 --species homo_sapiens```
