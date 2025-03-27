@@ -20,7 +20,7 @@ PyPI package contains HumanGEM XML file but GitHub repository does not (25 MB up
 
 ```usage.ipynb``` is an example on diabetic metabolic dysregulation due to genetic knockouts.
 
- Publication draft: [Subtypes of type 2 diabetes from gene4c knockouts in HumanGEM genome-scale model show 5 signature metabolic states](diabetes_sysbio_draft_publication.pdf)
+ Publication draft: [Subtypes of type 2 diabetes from genetic knockouts in HumanGEM genome-scale model show 5 signature metabolic states](diabetes_sysbio_draft_publication.pdf)
 
 Dependencies:
 
